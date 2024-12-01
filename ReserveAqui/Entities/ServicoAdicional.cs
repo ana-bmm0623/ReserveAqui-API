@@ -20,7 +20,7 @@ namespace ReserveAqui.Entities
         [Required]
         public double Valor { get; set; }
 
-        public List<ReservaServicoAdicional> ReservaServicosAdicionais { get; set; };
+        public List<ReservaServicoAdicional> ReservaServicosAdicionais { get; set; }
 
     }
 }
