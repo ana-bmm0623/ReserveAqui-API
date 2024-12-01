@@ -10,7 +10,7 @@
 
         public double Valor { get; set; }
 
-        public ReservaServicoAdicional ReservaServicoAdicional { get; set; }
+        public List<ReservaServicoAdicional> ReservaServicosAdicionais { get; set; };
 
     }
 }
