@@ -5,7 +5,7 @@ namespace ReserveAqui.Entities
     public class Pagamento
     {
         public Pagamento() { }
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public double Valor { get; set; }
@@ -14,7 +14,7 @@ namespace ReserveAqui.Entities
         public DateTime DataPagamento { get; set; }
 
         [Required]
-        public int ReservaId { get; set; }
+        public Guid ReservaId { get; set; }
 
         [Required]
         public MetodoPagamento MetodoPagamento { get; set; }

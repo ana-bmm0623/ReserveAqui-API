@@ -11,13 +11,13 @@ namespace ReserveAqui.Entities
             Cancelada = false;  
         }
 
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
-        public int QuartoId { get; set; }
+        public Guid QuartoId { get; set; }
 
         [Required]
-        public int HospedeId { get; set; }
+        public Guid HospedeId { get; set; }
 
         [Required]
         public int QuantidadePessoas { get; set; }

@@ -9,7 +9,7 @@ namespace ReserveAqui.Entities
             ReservaServicosAdicionais = new List<ReservaServicoAdicional>();
         }
 
-        public int Id { get; set; }
+        public Guid Id {get; set; }
 
         [Required, StringLength(250)]
         public string Nome { get; set; }

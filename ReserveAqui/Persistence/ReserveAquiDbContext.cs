@@ -4,18 +4,12 @@ namespace ReserveAqui.Persistence
 {
     public class ReserveAquiDbContext
     {
-        List<Hotel> Hoteis { get; set; }
-
-        List<Quarto> Quartos { get; set; }
-
-        List<Reserva> Reservas { get; set; }
-
-        List<Hospede> Hospedes { get; set; }
-
-        List<ServicoAdicional> ServicosAdicionais { get; set; }
-
-        List<Pagamento> Pagamentos { get; set; }
-
+        public List<Hotel> Hoteis { get; set; }
+        public List<Quarto> Quartos { get; set; }
+        public List<Reserva> Reservas { get; set; }
+        public List<Hospede> Hospedes { get; set; }
+        public List<ServicoAdicional> ServicosAdicionais { get; set; }
+        public List<Pagamento> Pagamentos { get; set; }
         public List<ReservaServicoAdicional> ReservaServicosAdicionais { get; set; }
 
         public ReserveAquiDbContext()
@@ -28,6 +22,5 @@ namespace ReserveAqui.Persistence
             Pagamentos = new List<Pagamento>();
             ReservaServicosAdicionais = new List<ReservaServicoAdicional>();
         }
-
     }
 }
