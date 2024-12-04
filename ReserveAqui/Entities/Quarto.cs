@@ -9,7 +9,7 @@ namespace ReserveAqui.Entities
             Reservas = new List<Reserva>();
             Disponibilidade = true;
         }
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string NumeroIdentificacao { get; set; }
@@ -20,7 +20,7 @@ namespace ReserveAqui.Entities
         public bool Disponibilidade { get; set; }
 
         [Required]
-        public Guid HotelId { get; set; }
+        public int HotelId { get; set; }
 
         [Required]
         public double Preco { get; set; }

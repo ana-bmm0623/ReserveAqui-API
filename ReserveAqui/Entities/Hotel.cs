@@ -8,7 +8,7 @@ namespace ReserveAqui.Entities
         {
             Quartos = new List<Quarto>();
         }
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required, StringLength(250)]
         public string Nome { get; set; }
