@@ -7,15 +7,8 @@
 
         }
 
-
-        public Guid ReservaId { get; set; }
-
-        public Reserva Reserva { get; set; }
-
-        public Guid ServicoAdicionalId { get; set; }
-
-        public ServicoAdicional ServicoAdicional { get; set; }
-
-
+        public int Id { get; set; }
+        public int ReservaId { get; set; }
+        public int ServicoAdicionalId { get; set; }
     }
 }

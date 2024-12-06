@@ -11,13 +11,13 @@ namespace ReserveAqui.Entities
             Cancelada = false;  
         }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public Guid QuartoId { get; set; }
+        public int QuartoId { get; set; }
 
         [Required]
-        public Guid HospedeId { get; set; }
+        public int HospedeId { get; set; }
 
         [Required]
         public int QuantidadePessoas { get; set; }
@@ -33,10 +33,6 @@ namespace ReserveAqui.Entities
         public bool CheckOutRealizado { get; set; }
 
         public bool Cancelada { get; set; }
-
-        public Quarto Quarto { get; set; }
-
-        public Hospede Hospede { get; set; }
 
         public List<ReservaServicoAdicional> ReservaServicoAdicionals { get; set; }
 

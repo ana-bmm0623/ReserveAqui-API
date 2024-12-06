@@ -25,8 +25,6 @@ namespace ReserveAqui.Entities
         [Required]
         public double Preco { get; set; }
 
-        public Hotel Hotel { get; set; }
-
         public List<Reserva> Reservas { get; set; }
     }
 }
