@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReserveAqui.Entities
 {
@@ -8,7 +9,9 @@ namespace ReserveAqui.Entities
         {
             Quartos = new List<Quarto>();
         }
-        public int Id { get; set; }
+
+       
+        public Guid Id { get; set; }
 
         [Required, StringLength(250)]
         public string Nome { get; set; }

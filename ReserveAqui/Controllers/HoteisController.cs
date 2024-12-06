@@ -134,9 +134,9 @@ namespace ReserveAqui.Controllers
         [HttpGet("filterByCapacity/{capacity}")]
         public IActionResult FilterByCapacity(int capacity)
         {
-            var filteredQuartos = await _context.Quartos
+            var filteredQuartos =  _context.Quartos
                 .Where(q => q.CapacidadeMaxima >= capacity && q.Disponibilidade)
-                .ToListAsync();
+                .ToList();
 
             return Ok(filteredQuartos);
         }

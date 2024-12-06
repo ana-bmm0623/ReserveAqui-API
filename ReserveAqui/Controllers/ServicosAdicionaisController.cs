@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReserveAqui.Entities;
 using ReserveAqui.Persistence;
+using System.Linq;
 
 namespace ReserveAqui.Controllers
 {
@@ -23,7 +24,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById(int id)
         {
             var servico = _context.ServicosAdicionais.SingleOrDefault(s => s.Id == id);
             if (servico == null)
@@ -37,20 +38,18 @@ namespace ReserveAqui.Controllers
         [HttpPost]
         public IActionResult Post(ServicoAdicional servico)
         {
-            var newId = Guid.NewGuid();
-            servico.Id = newId;
-
             if (servico.Valor <= 0)
             {
                 return BadRequest("O valor do serviço deve ser positivo.");
             }
 
             _context.ServicosAdicionais.Add(servico);
+            _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new { id = servico.Id }, servico);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, ServicoAdicional servico)
+        public IActionResult Update(int id, ServicoAdicional servico)
         {
             var servicoExistente = _context.ServicosAdicionais.SingleOrDefault(s => s.Id == id);
             if (servicoExistente == null)
@@ -66,7 +65,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(int id)
         {
             var servico = _context.ServicosAdicionais.SingleOrDefault(s => s.Id == id);
             if (servico == null)
@@ -79,7 +78,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpPost("{servicoId}/add-to-reserva/{reservaId}")]
-        public IActionResult AddToReserva(Guid servicoId, Guid reservaId)
+        public IActionResult AddToReserva(int servicoId, int reservaId)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == reservaId);
             if (reserva == null)
@@ -105,6 +104,4 @@ namespace ReserveAqui.Controllers
             return Ok("Serviço adicional adicionado com sucesso.");
         }
     }
-
 }
-

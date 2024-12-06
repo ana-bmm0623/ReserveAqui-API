@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReserveAqui.Entities
 {
@@ -9,7 +10,9 @@ namespace ReserveAqui.Entities
             Reservas = new List<Reserva>();
             Disponibilidade = true;
         }
-        public int Id { get; set; }
+
+       
+        public Guid Id { get; set; }
 
         [Required]
         public string NumeroIdentificacao { get; set; }
@@ -20,7 +23,7 @@ namespace ReserveAqui.Entities
         public bool Disponibilidade { get; set; }
 
         [Required]
-        public int HotelId { get; set; }
+        public Guid HotelId { get; set; }
 
         [Required]
         public double Preco { get; set; }

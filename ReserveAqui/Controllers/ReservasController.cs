@@ -38,7 +38,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetById(int id)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -64,7 +64,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id,Reserva reservaAtualizada)
+        public IActionResult Update(int id, Reserva reservaAtualizada)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -78,7 +78,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Cancel(Guid id)
+        public IActionResult Cancel(int id)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -93,7 +93,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpPost("{id}/check-in")]
-        public IActionResult CheckIn(Guid id)
+        public IActionResult CheckIn(int id)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -107,9 +107,9 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpPost("{id}/check-out")]
-        public IActionResult CheckOut(Guid id)
+        public IActionResult CheckOut(int id)
         {
-            var reserva = _context.Reservas.FirstOrDefault(r => r.Id == id);
+            var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
                 return NotFound("Reserva não encontrada.");
 

@@ -1,4 +1,7 @@
-﻿namespace ReserveAqui.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace ReserveAqui.Entities
 {
     public class ReservaServicoAdicional
     {
@@ -7,8 +10,8 @@
 
         }
 
-        public int Id { get; set; }
-        public int ReservaId { get; set; }
-        public int ServicoAdicionalId { get; set; }
+        public Guid Id { get; set; }
+        public Guid ReservaId { get; set; }
+        public Guid ServicoAdicionalId { get; set; }
     }
 }
