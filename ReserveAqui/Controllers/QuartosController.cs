@@ -24,7 +24,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(Guid id)
         {
             var quarto = _context.Quartos.SingleOrDefault(q => q.Id == id);
             if (quarto == null)
@@ -39,19 +39,18 @@ namespace ReserveAqui.Controllers
         public IActionResult Post(Quarto quarto)
         {
             // Gerar um novo Id como int
-            quarto.Id = _context.Quartos.Count > 0 ? _context.Quartos.Max(q => q.Id) + 1 : 1;
-
             if (quarto.CapacidadeMaxima <= 0)
             {
                 return BadRequest("A capacidade máxima deve ser positiva.");
             }
 
+            quarto.Id = Guid.NewGuid();
             _context.Quartos.Add(quarto);
             return CreatedAtAction(nameof(GetById), new { id = quarto.Id }, quarto);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Quarto quarto)
+        public IActionResult Update(Guid id, Quarto quarto)
         {
             var quartoExistente = _context.Quartos.SingleOrDefault(q => q.Id == id);
             if (quartoExistente == null)
@@ -69,7 +68,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             var quarto = _context.Quartos.SingleOrDefault(q => q.Id == id);
             if (quarto == null)

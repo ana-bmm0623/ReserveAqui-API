@@ -38,7 +38,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(Guid id)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -59,12 +59,13 @@ namespace ReserveAqui.Controllers
             reserva.CheckOutRealizado = false;
             reserva.Cancelada = false;
 
+            reserva.Id = Guid.NewGuid();
             _context.Reservas.Add(reserva);
             return CreatedAtAction(nameof(GetById), new { id = reserva.Id }, reserva);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Reserva reservaAtualizada)
+        public IActionResult Update(Guid id, Reserva reservaAtualizada)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -78,7 +79,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Cancel(int id)
+        public IActionResult Cancel(Guid id)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -93,7 +94,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpPost("{id}/check-in")]
-        public IActionResult CheckIn(int id)
+        public IActionResult CheckIn(Guid id)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)
@@ -107,7 +108,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpPost("{id}/check-out")]
-        public IActionResult CheckOut(int id)
+        public IActionResult CheckOut(Guid id)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == id);
             if (reserva == null)

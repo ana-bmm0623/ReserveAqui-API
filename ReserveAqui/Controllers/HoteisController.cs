@@ -26,7 +26,7 @@ namespace ReserveAqui.Controllers
 
         // GET: api/hotels/{id}
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(Guid id)
         {
             var hotel =  _context.Hoteis.SingleOrDefault(h => h.Id == id);
             if (hotel == null)
@@ -46,13 +46,14 @@ namespace ReserveAqui.Controllers
                 return BadRequest("O nome do hotel e a capacidade máxima devem ser fornecidos e válidos.");
             }
 
+            hotel.Id = Guid.NewGuid();
             _context.Hoteis.Add(hotel);
             return CreatedAtAction(nameof(GetById), new { id = hotel.Id }, hotel);
         }
 
         // PUT: api/hotels/{id}
         [HttpPut("{id}")]
-        public IActionResult Update(int id,  Hotel hotel)
+        public IActionResult Update(Guid id,  Hotel hotel)
         {
             if (id != hotel.Id)
             {
@@ -76,7 +77,7 @@ namespace ReserveAqui.Controllers
 
         // DELETE: api/hotels/{id}
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             var hotel = _context.Hoteis.SingleOrDefault(h => h.Id == id);
             if (hotel == null)
@@ -91,7 +92,7 @@ namespace ReserveAqui.Controllers
 
         // POST: api/hotels/{hotelId}/add-room
         [HttpPost("{hotelId}/add-room")]
-        public IActionResult AddRoom(int hotelId, Quarto room)
+        public IActionResult AddRoom(Guid hotelId, Quarto room)
         {
             var hotel = _context.Hoteis.SingleOrDefault(h => h.Id == hotelId);
             if (hotel == null)
@@ -107,7 +108,7 @@ namespace ReserveAqui.Controllers
 
         // PUT: api/hotels/{hotelId}/update-room/{roomId}
         [HttpPut("{hotelId}/update-room/{roomId}")]
-        public IActionResult UpdateRoom(int hotelId, int roomId, [FromBody] Quarto room)
+        public IActionResult UpdateRoom(Guid hotelId, Guid roomId, [FromBody] Quarto room)
         {
             if (hotelId != room.HotelId)
             {

@@ -24,7 +24,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(Guid id)
         {
             var servico = _context.ServicosAdicionais.SingleOrDefault(s => s.Id == id);
             if (servico == null)
@@ -43,13 +43,13 @@ namespace ReserveAqui.Controllers
                 return BadRequest("O valor do serviço deve ser positivo.");
             }
 
+            servico.Id = Guid.NewGuid();
             _context.ServicosAdicionais.Add(servico);
-            _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new { id = servico.Id }, servico);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, ServicoAdicional servico)
+        public IActionResult Update(Guid id, ServicoAdicional servico)
         {
             var servicoExistente = _context.ServicosAdicionais.SingleOrDefault(s => s.Id == id);
             if (servicoExistente == null)
@@ -65,7 +65,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             var servico = _context.ServicosAdicionais.SingleOrDefault(s => s.Id == id);
             if (servico == null)
@@ -78,7 +78,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpPost("{servicoId}/add-to-reserva/{reservaId}")]
-        public IActionResult AddToReserva(int servicoId, int reservaId)
+        public IActionResult AddToReserva(Guid servicoId, Guid reservaId)
         {
             var reserva = _context.Reservas.SingleOrDefault(r => r.Id == reservaId);
             if (reserva == null)

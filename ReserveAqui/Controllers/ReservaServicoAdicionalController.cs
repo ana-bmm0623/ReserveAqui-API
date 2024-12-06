@@ -24,7 +24,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(Guid id)
         {
             var reservaServicoAdicional = _context.ReservaServicosAdicionais.SingleOrDefault(r => r.Id == id);
             if (reservaServicoAdicional == null)
@@ -36,13 +36,14 @@ namespace ReserveAqui.Controllers
         [HttpPost]
         public IActionResult Post(ReservaServicoAdicional reservaServicoAdicional)
         {
+            reservaServicoAdicional.Id = Guid.NewGuid();
             _context.ReservaServicosAdicionais.Add(reservaServicoAdicional);
 
             return CreatedAtAction(nameof(GetById), new { id = reservaServicoAdicional.Id }, reservaServicoAdicional);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, ReservaServicoAdicional reservaServicoAdicional)
+        public IActionResult Update(Guid id, ReservaServicoAdicional reservaServicoAdicional)
         {
             var reservaServicoAdicionalExistente = _context.ReservaServicosAdicionais.SingleOrDefault(r => r.Id == id);
             if (reservaServicoAdicionalExistente == null)
@@ -55,7 +56,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             var reservaServicoAdicional = _context.ReservaServicosAdicionais.SingleOrDefault(r => r.Id == id);
             if (reservaServicoAdicional == null)

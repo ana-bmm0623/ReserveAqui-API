@@ -26,7 +26,7 @@ namespace ReserveAqui.Controllers
       
         // GET: api/hospedes/{id}
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(Guid id)
         {
             var hospede = _context.Hospedes.SingleOrDefault(h => h.Id == id);
             if (hospede == null)
@@ -50,13 +50,14 @@ namespace ReserveAqui.Controllers
                 return BadRequest("Hóspede com este Email já existe.");
             }
 
+            hospede.Id = Guid.NewGuid();
             _context.Hospedes.Add(hospede);
             return CreatedAtAction(nameof(GetById), new { id = hospede.Id }, hospede);
         }
 
         // PUT: api/hospedes/{id}
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Hospede hospede)
+        public IActionResult Update(Guid id, Hospede hospede)
         {
             if (id != hospede.Id)
             {
@@ -92,7 +93,7 @@ namespace ReserveAqui.Controllers
 
         // DELETE: api/hospedes/{id}
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             var hospede = _context.Hospedes.SingleOrDefault(h => h.Id == id);
             if (hospede == null)

@@ -24,7 +24,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(Guid id)
         {
             var pagamento = _context.Pagamentos.SingleOrDefault(p => p.Id == id);
             if (pagamento == null)
@@ -36,13 +36,14 @@ namespace ReserveAqui.Controllers
         [HttpPost]
         public IActionResult Post(Pagamento pagamento)
         {
+            pagamento.Id = Guid.NewGuid();
             _context.Pagamentos.Add(pagamento);
 
             return CreatedAtAction(nameof(GetById), new { id = pagamento.Id }, pagamento);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Pagamento pagamento)
+        public IActionResult Update(Guid id, Pagamento pagamento)
         {
             var pagamentoExistente = _context.Pagamentos.SingleOrDefault(p => p.Id == id);
             if (pagamentoExistente == null)
@@ -58,7 +59,7 @@ namespace ReserveAqui.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(Guid id)
         {
             var pagamento = _context.Pagamentos.SingleOrDefault(p => p.Id == id);
             if (pagamento == null)
